@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   devise_for :admins
 
 
-  root to: 'homes#top'
-  get '/about' => 'homes#about'
+  root to: 'public/homes#top'
+  get '/about' => 'public/homes#about'
 
   resources :items, only: [:index, :show]
   resources :registrations, only: [:new, :create]
