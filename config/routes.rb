@@ -3,29 +3,31 @@ Rails.application.routes.draw do
   devise_for :customers
   devise_for :admins
 
+  scope module: :public do
+    root to: 'homes#top'
+    get '/about' => 'homes#about'
 
-  root to: 'public/homes#top'
-  get '/about' => 'public/homes#about'
+    resources :items, only: [:index, :show]
+    resources :registrations, only: [:new, :create]
+    resources :sessions, only: [:new, :create, :destroy]
 
-  resources :items, only: [:index, :show]
-  resources :registrations, only: [:new, :create]
-  resources :sessions, only: [:new, :create, :destroy]
+    resource :customers, only: [:edit, :update]
+    get '/customers/my_page' => 'customers#show'
+    get '/customers/confirm' => 'customers#confirm'
+    patch '/customers/unsubscribe' => 'customers#unsubscribe'
 
-  resources :customers, only: [:show, :edit, :update]
-  get '/customers/confirm' => 'customers#confirm'
-  patch '/customers/unsubscribe' => 'customers#unsubscribe'
+    resources :cart_items, except: [:new, :show, :edit]
+    delete '/cart_items' => 'cart_items#destroy_all'
 
-  resources :cart_items, except: [:new, :show, :edit]
-  delete '/cart_items' => 'cart_items#destroy_all'
+    resources :orders, except: [:edit, :update, :destroy]
+    post '/orders/confirm' => 'orders#confirm'
+    get '/orders/thanks' => 'orders#thanks'
 
-  resources :orders, except: [:edit, :update, :destroy]
-  post '/orders/confirm' => 'orders#confirm'
-  get '/orders/thanks' => 'orders#thanks'
-
-  resources :addresses, except: [:new, :show]
+    resources :addresses, except: [:new, :show]
+  end
 
   namespace :admin do
-    get '/admin' => 'admin/homes#top'
+    root to: 'homes#top'
 
     resources :sessions, only: [:new, :create, :destroy]
     resources :items, except: [:destroy]

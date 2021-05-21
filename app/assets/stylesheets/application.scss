@@ -15,5 +15,7 @@
  */
 
 @import "bootstrap";
-@import 'font-awesome-sprockets';
-@import 'font-awesome';
+
+.btn,btn-outline-secondary{
+  margin :0px 8px;
+}
