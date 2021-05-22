@@ -10,7 +10,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body  class="d-flex flex-column vh-100">
+  <body>
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
@@ -65,14 +65,14 @@
       </nav>
     </header>
 
-    <main>
+    <main class="shadow-sm">
       <%= yield %>
     </main>
 
-    <footer>
+    <footer class="shadow-sm">
       <div class="container mt-5">
         <div class="row">
-          <div class="mx-auto">
+          <div class="mx-auto p-5">
             <p>NaganoCake</p>
           </div>
         </div>

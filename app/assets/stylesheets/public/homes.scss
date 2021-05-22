@@ -1,3 +1,26 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.image{
+  width: 750px;
+  height: 400px;
+  background-color: lightgrey;
+  display: flex;
+}
+.welcome-text{
+    font-size: 20px;
+}
+
+.about{
+  font-size: 90px;
+}
+.about-text{
+  font-size: 25px;
+}
+.about-box{
+  width: 560px;
+  height: 220px;
+  background-color: lightgrey;
+}
