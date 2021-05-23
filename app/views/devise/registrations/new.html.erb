@@ -1,29 +1,74 @@
-<h2>Sign up</h2>
 
-<%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="information my-4">
+    <h4 class="px-5">新規会員登録</h4>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+  <%= form_with model: @customer, url: customer_registration_path, id: 'new_customer', class: 'new_customer', local: true do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th scope="row">名前</th>
+          <td>(姓)</td>
+          <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name",placeholder: "test" %></td>
+          <td>(名)</td>
+          <td><%= f.text_field :first_name, autocomplete: "first_name" %></td>
+        </tr>
+        <tr>
+          <th scope="row">フリガナ</th>
+          <td>(セイ)</td>
+          <td><%= f.text_field :last_name_kana, autocomplete: "last_name_kana" %></td>
+          <td>(メイ)</td>
+          <td><%= f.text_field :first_name_kana, autocomplete: "first_name_kana" %></td>
+        </tr>
+        <tr>
+          <th scope="row">メールアドレス</th>
+          <td></td>
+          <td><%= f.email_field :email, autocomplete: "email" %></td>
+        </tr>
+        <tr>
+          <th scope="row">郵便番号(ハイフンなし) </th>
+          <td></td>
+          <td><%= f.number_field :postal_code, autocomplete: "postal_code" %></td>
+        </tr>
+        <tr class="address">
+          <th scope="row">住所</th>
+          <td></td>
+          <td colspan="3"><%= f.text_field :address, autocomplete: "address" %></td>
+        </tr>
+        <tr>
+          <th scope="row">電話番号(ハイフンなし) </th>
+          <td></td>
+          <td><%= f.telephone_field :telephone_number, autocomplete: "telephone_number" %></td>
+        </tr>
+        <tr>
+          <th scope="row">パスワード(6⽂字以上)</th>
+          <td></td>
+          <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <th scope="row">パスワード(確認⽤)</th>
+          <td></td>
+          <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td></td>
+          <td><%= f.submit "新規登録", class: 'px-5 btn btn-success' %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="information my-4">
+    <h4 class="px-5">既に登録済みの方</h4>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div>
+    <p class="pl-5">
+      <%= link_to "こちら",new_customer_session_path %>　からログインしてください。
+    </p>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+
