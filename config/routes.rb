@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
 
-  devise_for :customers
+  devise_for :customers, :controllers => {
+    :sessions => 'public/sessions',
+    :registrations => 'public/registrations'
+  }
+
   devise_for :admins
+
 
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'
 
     resources :items, only: [:index, :show]
-    resources :registrations, only: [:new, :create]
-    resources :sessions, only: [:new, :create, :destroy]
 
     resource :customers, only: [:edit, :update]
     get '/customers/my_page' => 'customers#show'

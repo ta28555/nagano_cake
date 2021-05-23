@@ -1,0 +1,14 @@
+<div class="container">
+  <div>
+    <h2 class="mx-5 font-weight-bold">
+      商品一覧
+      <span class="font-weight-light"> (全<%= @items.count %>件)</span>
+    </h2>
+  </div>
+  <div>
+    <% @items.each do |item| %>
+    <% end %>
+    <%= paginate @items_page %>
+  </div>
+
+</div>
