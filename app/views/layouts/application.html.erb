@@ -48,6 +48,7 @@
                 <%= link_to "ログアウト", destroy_customer_session_path, class: 'nav-link text-dark', method: :delete %>
                 </button>
             </li>
+            <% elsif admin_signed_in? %>
             <% else %>
             <li class="nav-item">
               <button type="button" class="btn btn-outline-secondary">
