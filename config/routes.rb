@@ -5,7 +5,10 @@ Rails.application.routes.draw do
     :registrations => 'public/registrations'
   }
 
-  devise_for :admins
+  devise_for :admin, :controllers => {
+    :sessions => 'admin/sessions',
+    :registrations => 'admin/registrations'
+  }
 
 
   scope module: :public do
@@ -32,7 +35,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
 
-    resources :sessions, only: [:new, :create, :destroy]
     resources :items, except: [:destroy]
     resources :genres, except: [:new, :show, :destroy]
     resources :customers, except: [:new, :create, :destroy]
