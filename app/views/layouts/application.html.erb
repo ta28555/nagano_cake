@@ -51,7 +51,7 @@
             <% elsif admin_signed_in? %>
             <li class="nav-item">
               <button type="button" class="btn btn-outline-secondary">
-                <%= link_to "商品一覧",items_path, class: 'nav-link text-dark' %>
+                <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-dark' %>
               </button>
             </li>
             <li class="nav-item">
@@ -61,7 +61,7 @@
             </li>
             <li class="nav-item">
               <button type="button" class="btn btn-outline-secondary">
-                <%= link_to "注文履歴一覧",admin_items_path, class: 'nav-link text-dark' %>
+                <%= link_to "注文履歴一覧",admin_root_path, class: 'nav-link text-dark' %>
               </button>
             </li>
             <li class="nav-item">

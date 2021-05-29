@@ -1,6 +1,6 @@
 <div class="container">
   <div class="my-4">
-    <h4 class="information px-5">商品一覧</h4>
+    <h4 class="information px-5">商品新規登録</h4>
   </div>
 
   <%= form_with model: @item, local:true do |f| %>
@@ -20,7 +20,7 @@
       </tr>
       <tr>
         <th scope="row">ジャンル</th>
-        <td><%#= f.collection_select :genre, Jenre.all, :class, :genre %></td>
+        <td><%= f.collection_select :genre, @genres, :id, :name, { prompt: "--選択してください--" } %></td>
       </tr>
       <tr>
         <th scope="row">税抜価格</th>
@@ -29,17 +29,15 @@
       <tr>
         <th scope="row">販売ステータス</th>
         <td>
-          <%= f.label :is_active, "販売中" %>
           <%= f.radio_button :is_active, :true, checked: true %>
-        </td>
-        <td>
-          <%= f.label :is_active, "販売停止中" %>
+          <%= f.label :is_active, "販売中" %>
           <%= f.radio_button :is_active, :false %>
+          <%= f.label :is_active, "販売停止中" %>
         </td>
       </tr>
       <tr>
         <th scope="row"></th>
-        <td><%= f.submit '新規登録' %></td>
+        <td><%= f.submit '新規登録', class: "btn btn-success" %></td>
       </tr>
       </tr>
     </tbody>

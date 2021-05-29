@@ -1,32 +1,5 @@
 <div class="container">
   <div class="my-4">
-    <h4 class="information px-5">商品一覧</h4>
-    <button type="button" class="btn btn-light shadow">
-      <%= link_to "+", new_admin_item_path, class: 'text-dark' %>
-    </button>
+    <h4 class="information px-5">注文履歴一覧</h4>
   </div>
-
-  <table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th scope="col">商品ID</th>
-      <th scope="col">商品名</th>
-      <th scope="col">税抜価格</th>
-      <th scope="col">ジャンル</th>
-      <th scope="col">ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-    <tr>
-      <td>item.id</td>
-      <td><% link_to "item.name" %></td>
-      <td>item.price</td>
-      <td>item.genre</td>
-      <td>item.</td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
 </div>
