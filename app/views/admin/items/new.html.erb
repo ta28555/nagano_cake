@@ -3,7 +3,7 @@
     <h4 class="information px-5">商品新規登録</h4>
   </div>
 
-  <%= form_with model: @item, local:true do |f| %>
+  <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
   <table class="table table-borderless">
     <tbody>
       <tr>
@@ -20,7 +20,7 @@
       </tr>
       <tr>
         <th scope="row">ジャンル</th>
-        <td><%= f.collection_select :genre, @genres, :id, :name, { prompt: "--選択してください--" } %></td>
+        <td><%= f.collection_select :genre_id, @genres, :id, :name, { prompt: "--選択してください--" } %></td>
       </tr>
       <tr>
         <th scope="row">税抜価格</th>
