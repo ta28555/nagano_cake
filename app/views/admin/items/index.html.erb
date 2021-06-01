@@ -1,7 +1,7 @@
 <div class="container">
   <div class="my-4">
     <h4 class="information px-5">商品一覧</h4>
-    <button type="button" class="btn btn-light shadow active">
+    <button type="button" class="btn btn-light shadow active rounded-circle">
       <%= link_to "+", new_admin_item_path, class: 'text-dark' %>
     </button>
   </div>
@@ -19,11 +19,11 @@
   <tbody>
     <% @items.each do |item| %>
     <tr>
-      <td>item.id</td>
-      <td><% link_to "item.name" %></td>
-      <td>item.price</td>
-      <td>item.genre</td>
-      <td>item.</td>
+      <td><%= item.id %></td>
+      <td><%= link_to item.name, admin_item_path(item) %></td>
+      <td><%= item.price.to_s(:delimited) %></td>
+      <td><%= item.genre.name %></td>
+      <td><%#= item.is_active.gsub(/true|false/, "true" => "販売中", "false" => "販売停止中") %></td>
     </tr>
     <% end %>
   </tbody>
