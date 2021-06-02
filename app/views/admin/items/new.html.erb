@@ -3,7 +3,7 @@
     <h4 class="information px-5">商品新規登録</h4>
   </div>
 
-  <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
+  <%= form_with model: @item, url: admin_item_path(@item), local:true do |f| %>
   <table class="table table-borderless">
     <tbody>
       <tr>
