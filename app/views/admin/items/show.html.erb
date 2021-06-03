@@ -1,18 +1,9 @@
-<div>
+<div class="container">
   <div class="my-4">
     <h4 class="information px-5">商品詳細</h4>
   </div>
 
   <table class="table table-borderless">
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
     <tbody>
       <tr>
         <td rowspan="5"><%= attachment_image_tag @item, :image, :fill, 300, 200, format:'jpg', fallback:"no_image.jpg" %></td>
