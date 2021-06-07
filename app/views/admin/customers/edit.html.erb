@@ -1,0 +1,57 @@
+<div>
+  <div class="my-4">
+    <h4 class="information px-5">
+      <%= @customer.name %>さんの会員情報編集
+    </h4>
+  </div>
+
+  <%= form_with model: @customer, url: admin_customer_path(@customer), local: true do |f| %>
+  <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <td>会員ID</td>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <td>氏名</td>
+          <td><%= f.text_field :last_name, autofocus: true %></td>
+          <td><%= f.text_field :first_name %></td>
+        </tr>
+        <tr>
+          <td>フリガナ</td>
+          <td><%= f.text_field :last_name_kana, autocomplete: "last_name_kana", placeholder: "レイワ" %></td>
+          <td><%= f.text_field :first_name_kana, autocomplete: "first_name_kana", placeholder: "ミチコ" %></td>
+        </tr>
+        <tr>
+          <td>郵便番号</td>
+          <td><%= f.number_field :postal_code, autocomplete: "postal_code", placeholder: "0000000" %></td>
+        </tr>
+        <tr>
+          <td>住所</td>
+          <td colspan="3"><%= f.text_field :address, autocomplete: "address", placeholder: "東京都渋⾕区代々⽊神園町0-0" %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= f.telephone_field :telephone_number, autocomplete: "telephone_number", placeholder: "0000000000" %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <td>
+            <%= f.radio_button :is_active, :false %>
+            <%= f.label :is_active, "有効" %>
+            <%= f.radio_button :is_active, :true %>
+            <%= f.label :is_active, "退会" %>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><%= f.submit "変更を保存", class: 'px-5 btn btn-success' %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% end %>
+</div>
