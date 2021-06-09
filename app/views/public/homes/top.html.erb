@@ -13,30 +13,17 @@
         <div>
             <h2 class="mt-5 ml-5 pl-4 text-left font-weight-bold">新着商品</h2>
         </div>
+
         <div class="new-item">
-            <div class="new-item-list m-2">
-                <div class="new-item-box mb-2"></div>
-                <p class="m-1 pl-1 text-left font-weight-bold">商品名</p>
-                <p class="m-1 pl-1 text-left font-weight-bold">¥0,000</p>
-            </div>
-
-            <div class="new-item-list m-2">
-                <div class="new-item-box mb-2"></div>
-                <p class="m-1 pl-1 text-left font-weight-bold">商品名</p>
-                <p class="m-1 pl-1 text-left font-weight-bold">¥0,000</p>
-            </div>
-
-            <div class="new-item-list m-2">
-                <div class="new-item-box mb-2"></div>
-                <p class="m-1 pl-1 text-left font-weight-bold">商品名</p>
-                <p class="m-1 pl-1 text-left font-weight-bold">¥0,000</p>
-            </div>
-
-            <div class="new-item-list m-2">
-                <div class="new-item-box mb-2"></div>
-                <p class="m-1 pl-1 text-left font-weight-bold">商品名</p>
-                <p class="m-1 pl-1 text-left font-weight-bold">¥0,000</p>
-            </div>
+        <% @items.each do |item| %>
+          <div class="new-item-list m-2">
+            <%= link_to item_path(item.id) do %>
+              <%= attachment_image_tag item, :image, class: "new-item-box mb-2" %>
+            <% end %>
+            <p class="m-1 pl-1 text-left font-weight-bold"><%= truncate(item.name, length: 13) %></p>
+            <p class="m-1 pl-1 text-left font-weight-bold">¥<%= item.price.to_s(:delimited) %></p>
+          </div>
+        <% end %>
         </div>
 
         <div class="text-right">
