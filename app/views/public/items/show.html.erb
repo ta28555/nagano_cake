@@ -1,0 +1,35 @@
+<div class="container">
+  <table class="table table-borderless my-5">
+    <tbody>
+      <tr>
+        <td rowspan="5"><%= attachment_image_tag @item, :image, :fill, 300, 200, format:'jpg', fallback:"no_image.jpg" %></td>
+        <td colspan="3">
+          <h3 class="font-weight-bold"><%= @item.name%></h3>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3" rowspan="3"><%= @item.introduction %></td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="font-weight-bold">
+          <span class="price-text">¥ <%= @item.tax_price.to_s(:delimited) %></span>
+          <span class="tax-text">(税込)</span>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><%= collection_select (:genre_id, @item, :id, :name, { prompt: "個数選択" }) %></td>
+        <td>カートに入れる</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
