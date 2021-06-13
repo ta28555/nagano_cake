@@ -26,10 +26,15 @@
         <td></td>
       </tr>
       <tr>
+      <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
         <td></td>
-        <td><%= collection_select (:genre_id, @item, :id, :name, { prompt: "個数選択" }) %></td>
+        <td><%= f.select :amount, [["1", 1],["2", 2]], { prompt: "個数選択" } %></td>
         <td>カートに入れる</td>
+      <% end %>
       </tr>
     </tbody>
   </table>
+
+
+
 </div>

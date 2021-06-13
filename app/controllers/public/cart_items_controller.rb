@@ -13,6 +13,8 @@ class Public::CartItemsController < ApplicationController
   end
 
   def create
+    CartItem.save
+    redirect_to cart_items_path
   end
 
 end
