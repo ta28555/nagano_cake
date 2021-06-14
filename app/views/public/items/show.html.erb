@@ -2,7 +2,7 @@
   <table class="table table-borderless my-5">
     <tbody>
       <tr>
-        <td rowspan="5"><%= attachment_image_tag @item, :image, :fill, 300, 200, format:'jpg', fallback:"no_image.jpg" %></td>
+        <td rowspan="5"><%= attachment_image_tag @item, :image, :fill, 300, 200, format:'jpg' %></td>
         <td colspan="3">
           <h3 class="font-weight-bold"><%= @item.name%></h3>
         </td>
@@ -26,13 +26,13 @@
         <td></td>
       </tr>
       <tr>
-      <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
-      <%= f.hidden_field :item_id, :value => @item.id %>
-      <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <td></td>
-        <td><%= f.select :amount, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5]], { prompt: "個数選択" } %></td>
-        <td><%= f.submit 'カートに入れる', class: "btn btn-success" %></td>
-      <% end %>
+        <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          <td></td>
+          <td><%= f.select :amount, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5]], { prompt: "個数選択" } %></td>
+          <td><%= f.submit 'カートに入れる', class: "btn btn-success" %></td>
+        <% end %>
       </tr>
     </tbody>
   </table>
