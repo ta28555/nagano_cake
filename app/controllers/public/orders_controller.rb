@@ -1,6 +1,9 @@
 class Public::OrdersController < ApplicationController
 
   def new
+    @orders = current_customer.orders
+    @customer = current_customer
+    @addresses = @customer.addresses
   end
 
   def confirm
