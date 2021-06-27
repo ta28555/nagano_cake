@@ -22,8 +22,9 @@ Rails.application.routes.draw do
     get '/customers/confirm' => 'customers#confirm'
     patch '/customers/unsubscribe' => 'customers#unsubscribe'
 
-    resources :cart_items, except: [:new, :show, :edit]
+
     delete '/cart_items' => 'cart_items#destroy_all'
+    resources :cart_items, except: [:new, :show, :edit]
 
     post '/orders/confirm' => 'orders#confirm'
     get '/orders/thanks' => 'orders#thanks'

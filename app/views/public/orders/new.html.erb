@@ -20,7 +20,7 @@
       <tr><td class="font-weight-bold">お届け先</td></tr>
       <tr>
         <td>
-          <%= f.radio_button :address, :true, checked: true %>
+          <%= f.radio_button :address_kind, 0, checked: true %>
           <%= f.label :address, "ご⾃⾝の住所" %>
           <br>
           <%= @customer.address %>
@@ -28,7 +28,7 @@
       </tr>
       <tr>
         <td>
-          <%= f.radio_button :address, :false %>
+          <%= f.radio_button :address_kind, 1 %>
           <%= f.label :address, "登録済住所から選択" %>
           <br>
           <%= f.collection_select :address_id, @addresses, :id, :destination %>
@@ -36,7 +36,7 @@
       </tr>
       <tr>
         <td>
-          <%= f.radio_button :address, :false %>
+          <%= f.radio_button :address_kind, 2 %>
           <%= f.label :address, "新しいお届け先" %>
         </td>
         <tr>

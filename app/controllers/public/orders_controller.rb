@@ -7,6 +7,34 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
+    @cart_items = current_customer.cart_items
+
+    if params[:order][:address_kind] == "0"
+      # ご自身の住所(current_customerの住所)
+      @order = Order.new(
+        postal_code: current_customer.postal_code,
+        address: current_customer.address,
+        payment_method: params[:order][:payment_method],
+        name: current_customer.name
+      )
+
+      # @order = Order.new
+      # @order.postal_code = current_customer.postal_code
+      # ...
+      # ...
+    elsif params[:order][:address_kind] == "1"
+      # 登録済住所
+      address = Address.find(params[:order][:address_id])
+      @order = Order.new(
+        postal_code: address.postal_code,
+        address: address.address,
+        payment_method: params[:order][:payment_method],
+        name: address.name
+      )
+    elsif params[:order][:address_kind] == "2"
+      # 新お届け先
+      @order = Order.new(order_params)
+    end
   end
 
   def thanks

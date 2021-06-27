@@ -2,6 +2,15 @@ class Order < ApplicationRecord
 
   has_many :oeder_ditails, dependent: :destroy
   belongs_to :customer
+  
+  def current_postage
+    800
+  end
+  
+  def destination
+    # postal_code + " " + address + " " + name
+    "#{postal_code} #{address} #{name}"
+  end
 
   enum payment_method: {
     credit: 0, # クレジットカード
