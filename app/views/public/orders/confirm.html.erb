@@ -3,6 +3,7 @@
     <h4 class="information px-5">注⽂情報確認</h4>
   </div>
 
+  <% @sum = 0 %>
   <% @cart_items.each do |cart_item| %>
   <table class="table table-bordered">
     <thead class="thead-light">
@@ -22,15 +23,30 @@
         <td><%= cart_item.item.tax_price.to_s(:delimited) %></td>
         <td><%= cart_item.amount %></td>
         <td><%= cart_item.subtotal.to_s(:delimited) %></td>
+        <% @sum += cart_item.subtotal %>
       </tr>
     </tbody>
   </table>
+  <% end %>
 
   <table class="table table-bordered">
-    <tr><td>送料</td></tr>
-    <tr><td><%= @order.current_postage %></td></tr>
+    <tr>
+      <td>送料</td>
+      <td><%= @order.current_postage.to_s(:delimited) %></td>
+    </tr>
+    <tr>
+      <td>商品合計</td>
+      <td><%= @sum.to_s(:delimited) %></td>
+    </tr>
+    <tr>
+      <td>請求金額</td>
+      <td>
+        <% total_payment = (@order.current_postage + @sum).to_s(:delimited) %>
+        <%= total_payment %>
+      </td>
+    </tr>
   </table>
-  <% end %>
+
 
   <h3>支払方法</h3>
   <p><%= @order.payment_method %></p>
@@ -38,3 +54,14 @@
   <h3>住所</h3>
   <p>〒<%= @order.destination %></p>
 </div>
+<%= form_with model: @order, local:true do |f| %>
+  <%= f.hidden_field :postal_code, value: @order.destination %>
+  <%= f.hidden_field :address, value: @order.destination %>
+  <%= f.hidden_field :name, value: @order.destination %>
+  <%= f.hidden_field :total_payment, value: total_payment %>
+  <%= f.hidden_field :postage, value: @order.current_postage %>
+  <%= f.hidden_field :payment_method, value: @order.payment_method %>
+  <%= f.hidden_field :status, value: @order.status %>
+
+  <%= f.submit "購入を確定する" %>
+<% end %>
