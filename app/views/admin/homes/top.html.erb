@@ -15,7 +15,7 @@
     <tbody>
       <% @order.each do |order| %>
       <tr>
-        <td><%= link_to order.order_ditails.created_at %></td>
+        <td><%= link_to order.created_at %></td>
         <td><%= order.customer.name %></td>
         <td><%= order.order_ditails.amount %></td>
         <td><%= order.status %></td>
