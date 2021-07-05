@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :customers, :controllers => {
-    :sessions => 'public/sessions',
-    :registrations => 'public/registrations'
-  }
-
-  devise_for :admin, :controllers => {
-    :sessions => 'admin/sessions',
-    :registrations => 'admin/registrations'
-  }
-
-
   scope module: :public do
     root to: 'homes#top'
     get '/about' => 'homes#about'
@@ -43,5 +32,15 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
   end
+
+  devise_for :customers, :controllers => {
+    :sessions => 'public/sessions',
+    :registrations => 'public/registrations'
+  }
+
+  devise_for :admin, :controllers => {
+    :sessions => 'admin/sessions',
+    :registrations => 'admin/registrations'
+  }
 
 end
