@@ -8,6 +8,9 @@
     退会する場合は、「退会する」をクリックしてください。
   </div>
   <div>
-    <%= link_to "退会しない", customers_my_page_path, %>
+    <%= link_to "退会しない", customers_my_page_path, class: 'px-5 btn btn-primary' %>
+    <%= form_with model: @customer, url: customers_unsubscribe_path, local: true do |f| %>
+      <%= f.submit "退会する", class: 'px-5 btn btn-danger' %>
+    <% end %>
   </div>
 </div>
