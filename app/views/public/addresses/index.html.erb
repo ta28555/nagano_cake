@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="my-4">
+    <h4 class="information px-5">配送先登録 / ⼀覧</h4>
+  </div>
+
+  <%= form_with model: @address, url: addresses_path, local: true do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <td>郵便番号(ハイフンなし)</td>
+        <td><%= f.text_field :postal_code, autocomplete: "postal_code", autofocus: true %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address, autocomplete: "address" %></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :last_name %></td>
+        <td><%= f.submit "新規登録" , class: 'px-5 btn btn-success' %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+
+  <% @addresses.each do |address|%>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= address.postal_code %></td>
+        <td><%= address.address %></td>
+        <td><%= address.name %></td>
+        <td>
+          <%= link_to "編集する", edit_address_path(address.id), class: 'px-5 btn btn-success' %>
+          <%#= "削除する", class: 'px-5 btn btn-danger' %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+</div>

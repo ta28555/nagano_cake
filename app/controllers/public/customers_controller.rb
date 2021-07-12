@@ -15,11 +15,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def confirm
-    @customer = current_customer
-    
   end
 
   def unsubscribe
+    @customer = current_customer
+    @customer.update(is_active: true)
+    sign_out(@customer)
     redirect_to root_path
   end
 
