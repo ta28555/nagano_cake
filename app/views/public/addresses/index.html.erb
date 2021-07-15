@@ -8,15 +8,15 @@
     <tbody>
       <tr>
         <td>郵便番号(ハイフンなし)</td>
-        <td><%= f.text_field :postal_code, autocomplete: "postal_code", autofocus: true %></td>
+        <td><%= f.text_field :postal_code, autocomplete: "postal_code", autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %></td>
       </tr>
       <tr>
         <td>住所</td>
-        <td><%= f.text_field :address, autocomplete: "address" %></td>
+        <td><%= f.text_field :address, autocomplete: "address", autocomplete: "address", placeholder: "東京都渋⾕区代々⽊神園町0-0" %></td>
       </tr>
       <tr>
         <td>宛名</td>
-        <td><%= f.text_field :last_name %></td>
+        <td><%= f.text_field :name, placeholder: "令和道子" %></td>
         <td><%= f.submit "新規登録" , class: 'px-5 btn btn-success' %></td>
       </tr>
     </tbody>
