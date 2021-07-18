@@ -23,7 +23,7 @@
   </table>
   <% end %>
 
-  <% @addresses.each do |address|%>
+
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
@@ -34,16 +34,17 @@
       </tr>
     </thead>
     <tbody>
+      <% @addresses.each do |address|%>
       <tr>
         <td><%= address.postal_code %></td>
         <td><%= address.address %></td>
         <td><%= address.name %></td>
         <td>
           <%= link_to "編集する", edit_address_path(address.id), class: 'px-5 btn btn-success' %>
-          <%#= "削除する", class: 'px-5 btn btn-danger' %>
+          <%= link_to "削除する", address_path(address.id), class: 'px-5 btn btn-danger', method: :delete %>
         </td>
       </tr>
+      <% end %>
     </tbody>
   </table>
-  <% end %>
 </div>
