@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="my-4">
+    <h4 class="information px-5">配送先編集</h4>
+  </div>
+
+  <%= form_with model: @address, url: address_path, local: true do |f| %>
+  <table>
+    <tbody>
+      <tr>
+        <td>郵便番号(ハイフンなし)</td>
+        <td><%= f.text_field :postal_code, autocomplete: "postal_code", autofocus: true, autocomplete: "postal_code" %></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td><%= f.text_field :address, autocomplete: "address", autocomplete: "address" %></td>
+      </tr>
+      <tr>
+        <td>宛名</td>
+        <td><%= f.text_field :name %></td>
+        <td><%= f.submit "変更内容を保存", class: 'px-5 btn btn-success' %></td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+</div>
