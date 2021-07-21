@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="my-4">
+    <h4 class="information px-5">注文履歴一覧</h4>
+  </div>
+
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>注文日</th>
+        <th>配達先</th>
+        <th>注文商品</th>
+        <th>支払金額</th>
+        <th>ステータス</th>
+        <th>注文詳細</th>
+      </tr>
+    </thead>
+    <% @orders.each do |order| %>
+    <tbody>
+      <tr>
+        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= order.address %></td>
+        <td><%#= order.order_ditails.item.id %></td>
+        <td><%= order.total_payment %></td>
+        <td><%= order.status %></td>
+        <td><%= link_to "表示する", order_path(order.id), class: 'px-5 btn btn-primary' %></td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>

@@ -4,7 +4,6 @@
   </div>
 
   <% @sum = 0 %>
-  <% @cart_items.each do |cart_item| %>
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
@@ -14,6 +13,7 @@
         <th scope="col">小計</th>
       </tr>
     </thead>
+    <% @cart_items.each do |cart_item| %>
     <tbody>
       <tr>
         <td>
@@ -26,8 +26,8 @@
         <% @sum += cart_item.subtotal %>
       </tr>
     </tbody>
+    <% end %>
   </table>
-  <% end %>
 
   <table class="table table-bordered">
     <tr>
@@ -63,5 +63,5 @@
   <%= f.hidden_field :payment_method, value: @order.payment_method %>
   <%= f.hidden_field :status, value: @order.status %>
 
-  <%= f.submit "購入を確定する"class: 'px-5 btn btn-success' %>
+  <%= f.submit "購入を確定する", class: 'px-5 btn btn-success' %>
 <% end %>

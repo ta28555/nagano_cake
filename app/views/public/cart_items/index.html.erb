@@ -4,7 +4,6 @@
   </div>
 
   <% @sum = 0 %>
-  <% @cart_items.each do |cart_item| %>
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
@@ -15,6 +14,7 @@
         <th></th>
       </tr>
     </thead>
+    <% @cart_items.each do |cart_item| %>
     <tbody>
       <tr>
         <td>
@@ -33,8 +33,8 @@
         <td><%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
       </tr>
     </tbody>
+    <% end %>
   </table>
-  <% end %>
 
     <div>
       <%= link_to "買い物を続ける", items_path, class: "btn btn-primary" %>
