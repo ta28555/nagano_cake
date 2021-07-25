@@ -19,8 +19,12 @@
       <tr>
         <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td><%= order.address %></td>
-        <td><%#= order.order_ditails.item.id %></td>
-        <td><%= order.total_payment %></td>
+        <td>
+          <% order.order_ditails.each do |order_ditail| %>
+            <%= order_ditail.item.name %>
+          <% end %>
+        </td>
+        <td><%= order.total_payment.to_s(:delimited) %>円</td>
         <td><%= order.status %></td>
         <td><%= link_to "表示する", order_path(order.id), class: 'px-5 btn btn-primary' %></td>
       </tr>

@@ -44,6 +44,16 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
     @order.save!
+    @cart_items = current_customer.cart_items.all
+      @cart_items.each do |cart_item|
+        @order_ditail = OrderDitail.new
+        @order_ditail.item_id = cart_item.item.id
+        @order_ditail.order_id = @order.id
+        @order_ditail.price = cart_item.tax_price
+        @order_ditail.amount = cart_item.amount
+        @order_ditail.save
+      end
+    current_customer.cart_items.destroy_all
     redirect_to orders_thanks_path
   end
 
@@ -54,7 +64,6 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_ditails 
   end
 
   private

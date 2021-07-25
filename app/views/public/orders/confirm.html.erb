@@ -41,8 +41,7 @@
     <tr>
       <td>請求金額</td>
       <td>
-        <% total_payment = (@order.current_postage + @sum).to_s(:delimited) %>
-        <%= total_payment %>
+        <%= (@order.current_postage + @sum).to_s(:delimited) %>
       </td>
     </tr>
   </table>
@@ -58,7 +57,7 @@
   <%= f.hidden_field :postal_code, value: @order.destination %>
   <%= f.hidden_field :address, value: @order.destination %>
   <%= f.hidden_field :name, value: @order.destination %>
-  <%= f.hidden_field :total_payment, value: total_payment %>
+  <%= f.hidden_field :total_payment, value: @order.current_postage + @sum %>
   <%= f.hidden_field :postage, value: @order.current_postage %>
   <%= f.hidden_field :payment_method, value: @order.payment_method %>
   <%= f.hidden_field :status, value: @order.status %>

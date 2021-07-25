@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
 
-  has_many :oeder_ditails, dependent: :destroy
+  has_many :order_ditails, dependent: :destroy
   belongs_to :customer
 
   def current_postage
