@@ -3,4 +3,62 @@
     <h4 class="information px-5">注文履歴詳細</h4>
   </div>
 
+  <%= form_with model: @order, url: admin_order_path, local: true do |f| %>
+  <table class="table table-borderless">
+    <tbody>
+      <tr>
+        <td>購入者</td>
+        <td><%= @order.customer.name %></td>
+      </tr>
+      <tr>
+        <td>注文日</td>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+      <tr>
+        <td>配送先</td>
+        <td><%= @order.destination %></td>
+      </tr>
+      <tr>
+        <td>支払方法</td>
+        <td><%= @order.payment_method_i18n %></td>
+      </tr>
+      <tr>
+        <td>注文ステータス</td>
+        <td>
+          <%= f.select :status, Order.statuses_i18n.invert %>
+          <%= f.submit '更新', class: "btn btn-success" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+
+  <%= form_with model: @order_ditail, url: admin_order_detail_path, local: true do |f| %>
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>製作ステータス</th>
+      </tr>
+    </thead>
+    <% @order.order_ditails.each do |order_ditail| %>
+    <tbody>
+      <tr>
+        <td><%= order_ditail.item.name %></td>
+        <td><%= order_ditail.tax_price.to_s(:delimited) %></td>
+        <td><%= order_ditail.amount %></td>
+        <td><%= order_ditail.subtotal.to_s(:delimited) %></td>
+        <td>
+          <%= f.select :making_status, OrderDitail.making_statuses_i18n.invert%>
+          <%= f.submit '更新', class: "btn btn-success" %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <% end %>
+
 </div>
