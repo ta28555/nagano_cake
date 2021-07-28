@@ -33,7 +33,6 @@
   </table>
   <% end %>
 
-  <%= form_with model: @order_ditail, url: admin_order_detail_path, local: true do |f| %>
   <table class="table table-bordered">
     <thead class="thead-light">
       <tr>
@@ -52,14 +51,15 @@
         <td><%= order_ditail.amount %></td>
         <td><%= order_ditail.subtotal.to_s(:delimited) %></td>
         <td>
-          <%= f.select :making_status, OrderDitail.making_statuses_i18n.invert%>
-          <%= f.submit '更新', class: "btn btn-success" %>
+          <%= form_with model: order_ditail, url: admin_order_detail_path(order_ditail.id), local: true do |f| %>
+            <%= f.select :making_status, OrderDitail.making_statuses_i18n.invert%>
+            <%= f.submit '更新', class: "btn btn-success" %>
+          <% end %>
         </td>
       </tr>
     </tbody>
     <% end %>
   </table>
-  <% end %>
 
   <table class="table table-bordered">
     <tbody>
@@ -73,7 +73,7 @@
       </tr>
       <tr>
         <td>請求金額合計</td>
-        <td><%= (@order.total_payment + @order.current_postage).to_s(:delimited) %>円</td>
+        <td scope="row"><%= (@order.total_payment + @order.current_postage).to_s(:delimited) %>円</td>
       </tr>
     </tbody>
   </table>
