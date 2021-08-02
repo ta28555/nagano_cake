@@ -7,6 +7,13 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
+
+    if @order.status == "confirmed"
+      @order.order_ditails.each do |order_ditail|
+        order_ditail.update(making_status: 1)
+      end
+    end
+
     redirect_to admin_order_path(@order)
   end
 
