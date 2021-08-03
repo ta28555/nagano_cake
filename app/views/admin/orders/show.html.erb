@@ -8,7 +8,7 @@
     <tbody>
       <tr>
         <td>購入者</td>
-        <td><%= link_to @order.customer.name, admin_root_path %></td>
+        <td><%= link_to @order.customer.name, admin_root_path(customer_id: @order.customer.id) %></td>
       </tr>
       <tr>
         <td>注文日</td>
